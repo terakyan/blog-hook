@@ -1,92 +1,58 @@
 @extends('cms::layouts.admin')
 
 @section('content')
-    <div class="col-md-12">
-    </div>
-    <div class="col-md-12">
-        <hr>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-        <!-- Select Basic -->
-        <div class="form-group m-t-10">
-            <div class="col-md-12">
-                <div class="col-md-12 m-b-10">
-                    <label class="col-md-3 control-label label-bold" for="selectbasic">Select Validations</label>
-                    <div class="col-md-9">
-                        <select id="pro_validation_rules_groups" name="pro_validation_rule" class="form-control">
-                            <option value="0">Select Rule</option>
-                            <option value="number_of_input">Number of input</option>
-                            <option value="input_types">Input types</option>
-                            <option value="text_rules">Text Rules</option>
-                            <option value="date">Date</option>
-                            <option value="required">Required Options</option>
-                            <option value="files">File</option>
-                            <option value="ip">IP Address</option>
-                            <option value="universal">Universal</option>
-                            <option value="must_contain">Must contain</option>
-                            <option value="starts_with">Starts with</option>
-                            <option value="ends_with">Ends with</option>
-                            <option value="custom">Custom</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-12 m-b-10 pro_validation_rules_group_place">
-
-                </div>
+    <div class="col-md-8">
+        <h2>New Post</h2>
+        {!! Form::open(['files' => true]) !!}
+        <div class="form-group col-md-12">
+            <label class="col-md-2 control-label" for="title">Post title</label>
+            <div class="col-md-6">
+                {!! Form::text('title',null,['class' => 'form-control input-md','placeholder' => 'Enter Post title']) !!}
             </div>
-            <div class="col-md-12" style="">
-                <div  class="m-b-10 pro_validator_settings_area" id="pro_validator_settings_area">
-
-                </div>
+        </div>
+        <div class="form-group col-md-12">
+            <label class="col-md-2 control-label" for="post-desc">Post Description</label>
+            <div class="col-md-6">
+                {!! Form::textarea('description',null,['id' => 'post-desc','class' => 'form-control input-md','placeholder' => 'Enter Post Description']) !!}
             </div>
-
+        </div>
+        <div class="form-group col-md-12">
+            <label class="col-md-2 control-label" for="post-desc">Post Image</label>
+            <div class="col-md-6">
+                {!! Form::file('image',['class' => 'form-control input-md']) !!}
+            </div>
         </div>
 
-            <div class="form-group m-b-10 clearfix">
-                <div class="form-group m-t-10">
-                    <div class="col-md-12 m-b-10">
-                        <ul id="myTags">
-                            <!-- Existing list items will be pre-added to the tags -->
-                        </ul>
-                    </div>
-                </div>
+        <div class="form-group col-md-12">
+            <label class="col-md-2 control-label" for="post-desc">Post Status</label>
+            <div class="col-md-6">
+                {!! Form::select('status',['draft' => 'Draft','pending' => 'Pending','published' => 'Published'],null,['class' => 'form-control input-md']) !!}
             </div>
-
-    </div>
-        <div class="col-md-6">
-
-            {!! Form::open() !!}
-                <div class="form-group  m-b-10 clearfix">
-                    <label class="col-md-3 control-label label-bold" for="title">Title</label>
-                    <div class="col-md-9"><input type="text" class="form-control" name="title" id="title"></div>
-                </div>
-                <div class="form-group  m-b-10 clearfix">
-                    <label class="col-md-3 control-label label-bold" for="description">Description</label>
-                    <div class="col-md-9"><textarea name="description" class="form-control" id="description" style="min-height: 148px;"></textarea></div>
-                </div>
-            <div class="form-group m-b-10 clearfix">
-                    <label class="col-md-3 control-label label-bold" for="code">Code</label>
-                    <div class="col-md-9"><input type="text" class="form-control" name="rules" readonly></div>
-            </div>
-                <div class="form-group  m-b-10 clearfix text-right">
-                   <button type="submit" class="btn submit-btn btn-submit-pro m-r-15"><i class="fa fa-floppy-o" aria-hidden="true"></i>Remember</button>
-                </div>
-
-            {!! Form::close() !!}
         </div>
-        <hr>
 
+        <div class="form-group col-md-12">
+            <div class="col-md-8">
+                {!! Form::submit("Create",['class' => 'btn btn-primary pull-right']) !!}
+            </div>
+        </div>
+        {!! Form::close() !!}
     </div>
-
-
-
 @stop
 @section('CSS')
-{!! Html::style('/resources/assets/css/jquery.tagit.css') !!}
-{!! Html::style('/public/css/validator.css') !!}
 @stop
 @section('JS')
-    {!! Html::script('/public/js/tag-it.js') !!}
-    {!! Html::script(route('auto_validate_js')) !!}
+    {!! HTML::script('/js/tinymice/tinymce.min.js') !!}
+    <script>
+//        tinymce.init({
+//            selector: '#post-desc', // change this value according to your HTML
+//            height: 200,
+//            theme: 'modern',
+//            plugins: [
+//                'advlist anchor autolink autoresize autosave bbcode charmap code codesample colorpicker contextmenu directionality emoticons fullpage fullscreen hr image imagetools importcss insertdatetime legacyoutput link lists media nonbreaking noneditable pagebreak paste preview print save searchreplace spellchecker tabfocus table template textcolor textpattern visualblocks visualchars wordcount shortcodes',
+//            ],
+//            toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+//            toolbar2: 'print preview media | forecolor backcolor emoticons | codesample help shortcodes',
+//            image_advtab: true
+//        });
+    </script>
 @stop

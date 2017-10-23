@@ -9,7 +9,7 @@
  *
  */
 
-namespace Sahak\Validator\Providers;
+namespace Terakyan\Blog\Providers;
 use Illuminate\Support\ServiceProvider;
 
 
@@ -24,27 +24,46 @@ class ModuleServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadTranslationsFrom(__DIR__ . '/../views', 'AutoValidator');
-        $this->loadViewsFrom(__DIR__ . '/../views', 'AutoValidator');
+        $this->loadTranslationsFrom(__DIR__ . '/../views', 'blog');
+        $this->loadViewsFrom(__DIR__ . '/../views', 'blog');
+
         \Eventy::action('admin.menus', [
-            "title" => "AutoValidator",
+            "title" => "Blog",
             "custom-link" => "#",
-            "icon" => "fa fa-gavel",
+            "icon" => "fa fa-anchor",
             "is_core" => "yes",
             "children" => [
                 [
-                    "title" => "Settings",
-                    "custom-link" => "/admin/auto-validator/settings",
+                    "title" => "Posts",
+                    "custom-link" => "/admin/blog/posts",
                     "icon" => "fa fa-angle-right",
                     "is_core" => "yes"
                 ],[
-                    "title" => "Lists",
-                    "custom-link" => "/admin/auto-validator/lists",
+                    "title" => "New post",
+                    "custom-link" => "/admin/blog/new-post",
+                    "icon" => "fa fa-angle-right",
+                    "is_core" => "yes"
+                ],[
+                    "title" => "Settings",
+                    "custom-link" => "/admin/blog/settings",
                     "icon" => "fa fa-angle-right",
                     "is_core" => "yes"
                 ]
             ]]);
-        \Sahakavatar\Cms\Models\Routes::registerPages('sahak.avatar/provaldation');
+        $tubs = [
+            'blog_pages' => [
+                [
+                    'title' => 'General',
+                    'url' => '/admin/blog/settings',
+                ], [
+                    'title' => 'Form Bulder',
+                    'url' => '/admin/blog/form-bulder',
+                ],
+            ]
+        ];
+        \Eventy::action('my.tab', $tubs);
+
+        \Sahakavatar\Cms\Models\Routes::registerPages('terakyan/blog-hook');
     }
 
 

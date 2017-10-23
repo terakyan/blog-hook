@@ -1,15 +1,6 @@
 <?php
-/**
- * Copyright (c) 2017.
- * *
- *  * Created by PhpStorm.
- *  * User: Ara
- *  * Date: 01/3/2016
- *  * Time: 10:44 PM
- *
- */
 
-namespace App\ExtraModules\Test;
+namespace Terakyan\Blog;
 /**
  * Created by PhpStorm.
  * User: Edo

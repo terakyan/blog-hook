@@ -1,5 +1,5 @@
 <?php
 
-addProvider('Sahak\Validator\Providers\ModuleServiceProvider');
+addProvider('Terakyan\Blog\Providers\ModuleServiceProvider');
 
 

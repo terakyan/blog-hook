@@ -23,20 +23,14 @@
 
 
 //Routes
-Route::get('/', 'ProValidatorConroller@getIndex');
-Route::get('/validator.js', 'ProValidatorConroller@getJs')->name('auto_validate_js');
-Route::get('/lists', 'ProValidatorConroller@getValidations');
-Route::get('/create-validation', 'ProValidatorConroller@getCreateValidation');
-Route::post('/create-validation', 'ProValidatorConroller@postCreateValidation');
-Route::get('/settings', 'ProValidatorConroller@getSettings');
-Route::post('/get-rules-groups', 'ProValidatorConroller@postGetRulesGroups');
-Route::post('/get-rules-settings', 'ProValidatorConroller@postGetRulesSettings');
-Route::group(['prefix'=>'copy'],function (){
-    Route::get('/', 'ProValidatorCopyConroller@getIndex');
-    Route::get('/lists', 'ProValidatorCopyConroller@getValidations');
-    Route::get('/create-validation', 'ProValidatorCopyConroller@getCreateValidation');
-    Route::post('/create-validation', 'ProValidatorCopyConroller@postCreateValidation');
-    Route::get('/settings', 'ProValidatorCopyConroller@getSettings');
-    Route::post('/get-rules-groups', 'ProValidatorCopyConroller@postGetRulesGroups');
-    Route::post('/get-rules-settings', 'ProValidatorCopyConroller@postGetRulesSettings');
+Route::get('/', 'IndexConroller@getIndex');
+Route::get('/posts', 'IndexConroller@getPosts');
+Route::get('/new-post', 'IndexConroller@getNewPost');
+Route::post('/new-post', 'IndexConroller@postNewPost');
+Route::get('/settings', 'IndexConroller@getSettings');
+Route::group(['prefix'=>'form-bulder'],function (){
+    Route::get('/', 'IndexConroller@getFormBulder');
+    Route::post('/form-fields', 'IndexConroller@postFormFieldsSettings');
 });
+Route::post('/settings', 'IndexConroller@postSettings');
+Route::post('/render-unit', 'IndexConroller@unitRenderWithFields');
